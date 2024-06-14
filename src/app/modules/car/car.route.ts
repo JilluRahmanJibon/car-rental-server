@@ -4,9 +4,17 @@ import { CarValidations } from "./car.validation";
 import { CarControllers } from "./car.controller";
 import auth from "../../middlewares/auth";
 
-const router  = Router()
+const router = Router();
 
+router.post(
+	"/",
+	auth("admin"),
+	validateRequest(CarValidations.createCarSchemaValidation),
+	CarControllers.createCar
+);
 
-router.post('/',auth('admin'),validateRequest(CarValidations.createCarSchemaValidation),CarControllers.createCar)
+router.get("/", CarControllers.getAllCars);
+router.get("/:id", CarControllers.getSignleCar);
+router.put("/:id", auth("admin"), CarControllers.updateCar);
 
-export const CarRoutes=router
+export const CarRoutes = router;
