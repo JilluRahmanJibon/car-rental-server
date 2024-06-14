@@ -18,15 +18,26 @@ const getSingleCarInToDB = async (id: string) => {
 };
 
 // update car
-const updateCarInToDB = async (id: string, payload:Partial<TCar>) => {
+const updateCarInToDB = async (id: string, payload: Partial<TCar>) => {
 	const result = await Car.findByIdAndUpdate(id, payload, {
 		new: true,
 		runValidators: true,
-    });
-    return result
+	});
+	return result;
+};
+// deleted a car
+const deleteACarInToDB = async (id: string) => {
+	const result = await Car.findOneAndUpdate({
+		_id: id,
+		isDeleted: true,
+	});
+
+	return result;
 };
 export const CarServices = {
 	createCarInToDB,
 	getAllCarsInToDB,
-	getSingleCarInToDB,updateCarInToDB
+	getSingleCarInToDB,
+	updateCarInToDB,
+	deleteACarInToDB,
 };
