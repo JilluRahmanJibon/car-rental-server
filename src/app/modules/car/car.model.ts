@@ -1,7 +1,6 @@
 import { Schema, model } from "mongoose";
 import { TCar } from "./car.interface";
 
-
 const carSchema = new Schema<TCar>(
 	{
 		name: {
@@ -31,8 +30,8 @@ const carSchema = new Schema<TCar>(
 		},
 		status: {
 			type: String,
-			enum: ["available", "not-available"],
-			default: "available",
+			enum: ["available", "unavailable"],
+			default: "unavailable",
 		},
 		isDeleted: {
 			type: Boolean,
@@ -44,4 +43,4 @@ const carSchema = new Schema<TCar>(
 	}
 );
 
-export const Car =model<TCar>('Car',carSchema)
+export const Car = model<TCar>("Car", carSchema);

@@ -5,6 +5,6 @@ export type TCar = {
 	isElectric: boolean;
 	features: string[];
 	pricePerHour: number;
-	status?: "availabe" | "not-available";
+	status?: "availabe" | "unavailable";
 	isDeleted?: boolean;
 };
