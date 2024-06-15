@@ -45,7 +45,7 @@ const updateCar = catchAsync(async (req, res) => {
 	sendResponse(res, {
 		success: true,
 		statusCode: httpStatus.OK,
-		message: "A Car retrived successfully",
+		message: "Car updated successfully",
 		data: result,
 	});
 });

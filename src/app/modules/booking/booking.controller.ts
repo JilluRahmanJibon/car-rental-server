@@ -47,16 +47,17 @@ const getMybooking = catchAsync(async (req, res) => {
 });
 
 const updateBookingForConfirmByAdmin = catchAsync(async (req, res) => {
-	const result = await BookingServices.updateBookingForConfirmInToDB(req.body )
+	const result = await BookingServices.updateBookingForConfirmInToDB(req.body);
 	sendResponse(res, {
 		success: true,
 		statusCode: httpStatus.OK,
 		message: "Car booked successfully",
 		data: result,
 	});
-})
+});
 export const BookingControllers = {
 	createBooking,
 	getAllBooking,
-	getMybooking,updateBookingForConfirmByAdmin
+	getMybooking,
+	updateBookingForConfirmByAdmin,
 };
