@@ -1,4 +1,4 @@
-import express, { Application } from "express";
+import express, { Application, Request, Response } from "express";
 import cors from "cors";
 import router from "./app/routes";
 import globalErrorHandler from "./app/middlewares/globalErrorHandler";
@@ -11,7 +11,11 @@ app.use(cors());
 
 app.use("/api", router);
 
-app.use(globalErrorHandler);
+app.get("/", (req: Request, res: Response) => {
+	res.send("Rental Car Server is running!");
+});
 
+app.use(globalErrorHandler);
 app.use(notFound);
+
 export default app;

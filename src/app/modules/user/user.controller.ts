@@ -12,6 +12,27 @@ const createUser = catchAsync(async (req, res) => {
 	});
 });
 
+const getAllUsers = catchAsync(async (req, res) => {
+	const result = await UserServices.getAllUsersInToDB();
+	sendResponse(res, {
+		success: true,
+		statusCode: 201,
+		message: "Users fatched successfully",
+		data: result,
+	});
+});
+
+const getSingleUser = catchAsync(async (req, res) => {
+	const result = await UserServices.getSingleUserInToDB(req.params.id);
+	sendResponse(res, {
+		success: true,
+		statusCode: 201,
+		message: "User fatched successfully",
+		data: result,
+	});
+});
 export const UserControllers = {
 	createUser,
+	getAllUsers,
+	getSingleUser,
 };

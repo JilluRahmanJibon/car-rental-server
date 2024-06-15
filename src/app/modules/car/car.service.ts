@@ -1,3 +1,5 @@
+import httpStatus from "http-status";
+import AppError from "../../errors/AppError";
 import { TCar } from "./car.interface";
 import { Car } from "./car.model";
 
@@ -9,11 +11,17 @@ const createCarInToDB = async (payload: Partial<TCar>) => {
 // get all cars in to db
 const getAllCarsInToDB = async () => {
 	const result = await Car.find();
+	if (result.length === 0) {
+		throw new AppError(httpStatus.NOT_FOUND, "No Data Found");
+	}
 	return result;
 };
 // get single car in to db
 const getSingleCarInToDB = async (id: string) => {
 	const result = await Car.findById(id);
+	if (!result) {
+		throw new AppError(httpStatus.NOT_FOUND, `No data Found for this id`);
+	}
 	return result;
 };
 
@@ -23,6 +31,10 @@ const updateCarInToDB = async (id: string, payload: Partial<TCar>) => {
 		new: true,
 		runValidators: true,
 	});
+ 
+	if (!result) {
+		throw new AppError(httpStatus.NOT_FOUND, "No Data Found");
+	}
 	return result;
 };
 // deleted a car
